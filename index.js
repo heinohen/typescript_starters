@@ -62,4 +62,144 @@ let man1 = {
     age: 1,
     hasEaten: false,
 };
+let sayStuff = {
+    sayHi: function (name) {
+        return `Hi ${name}`;
+    },
+    sayBye: (name) => `Bye ${name}`,
+};
+console.log(sayStuff.sayHi('Heisenberg'));
+console.log(sayStuff.sayBye('Heisenberg'));
+// functionssss
+function circle(diam) {
+    return "The circumference is " + Math.PI * diam;
+}
+console.log(circle(10));
+// as arrow
+const square = (height, width) => {
+    return "Area of the square is " + height * width;
+};
+console.log(square(10, 10));
+const triangle = (height, width) => {
+    return "Area of the triangle is " + (height * width) / 2;
+};
+console.log(triangle(10, 10));
+const add = (a, b, c) => {
+    console.log(c);
+    return a + b;
+};
+console.log(add(5, 4, "anything!"));
+const logMessage = (msg) => {
+    console.log('This is the message to be logged: ' + msg);
+};
+logMessage('Don\'t log this');
+// function signature
+let sayHello;
+sayHello = (name) => {
+    console.log('Hello ' + name);
+};
+sayHello("Dan");
+// Any type
+let age = "100";
+age = 5;
+age = {
+    years: 100,
+    months: 2,
+};
+console.log(age);
+const person1 = {
+    name: 'John',
+    id: "this is stringID",
+};
+const person2 = {
+    name: "Dan",
+    id: 123,
+};
+const sayHey = (person) => {
+    return "Hi " + person.name;
+};
+const sayByebye = (person) => {
+    return "Bye " + person.id;
+};
+console.log(sayHey(person2));
+console.log(sayByebye(person1));
+/*
+const link = document.querySelector('a');
+console.log(link.href); // "Object is possibly 'null." --> Can cause problems
+
+const link = document.querySelector('a')!; // ! makes this certain that we know it wont be null or undefined ** this works
+console.log(link.href);
+
+const form = document.getElementById('signup-form');
+console.log(form.method); // "Object is possibly null +++++ Property method does not exist on type HTMLElemen."
+
+const form = document.getElementById('signup-form') as HTMLFormElement; ** this works
+console.log(form.method);
+*/
+// class formation  
+class Person {
+    constructor(name, isCool, email, pets) {
+        this.name = name;
+        this.isCool = isCool;
+        this.email = email;
+        this.pets = pets;
+    }
+    sayHello() {
+        return `Hi, my name is ${this.name} and i have ${this.pets} pets`;
+    }
+}
+const person4 = new Person('Paul', true, "1@2.com", 3);
+console.log(person4.sayHello());
+let People = [];
+People.push(person4);
+People.push(new Person("Matt", false, "asd@das.com", 1));
+People.forEach(person => console.log(person.sayHello()));
+// class, but cleaner
+class Animal {
+    constructor(name, age, email, pets) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.pets = pets;
+    }
+    tellMyAttributes() {
+        return `Hi, i\'m ${this.name}, im ${this.age} years old, i dont have email, as i am an animal`;
+    }
+}
+const ani1 = new Animal("port", 123, "1@3.com", 0);
+console.log(ani1.tellMyAttributes());
+class Tiger extends Animal {
+    constructor(name, age, email, pets, stripes) {
+        super(name, age, email, pets);
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.pets = pets;
+        this.stripes = stripes;
+    }
+}
+const tikru = new Tiger("tikru", 9, "N/A", 0, 123);
+console.log(tikru.tellMyAttributes());
+function sayBroom(car) {
+    console.log(`Starting ${car.make}`);
+}
+sayBroom({
+    make: 'BMW',
+    age: 1999,
+});
+function startPeadaling(bike) {
+    console.log(`Pedaling ${bike.make}`);
+}
+startPeadaling({
+    make: 'ALPS',
+    shifts: 2,
+});
+// or define anonymously
+function goAway(goner) {
+    console.log(`Going away, ${goner.name} ${goner.age}`);
+}
+goAway({
+    name: "Mark",
+    age: 1234,
+});
 //# sourceMappingURL=index.js.map

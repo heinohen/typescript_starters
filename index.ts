@@ -94,9 +94,237 @@ let man1: Man = {
 };
 
 
+interface Speech {
+    sayHi(name: string): string; // oldskool js
+    sayBye: (name: string) => string; // ES6 arrow
+}
+
+let sayStuff: Speech ={
+    sayHi: function (name: string) {
+        return `Hi ${name}`;
+    },
+    sayBye: (name: string) => `Bye ${name}`,
+};
+
+console.log(sayStuff.sayHi('Heisenberg'));
+console.log(sayStuff.sayBye('Heisenberg'));
+
+// functionssss
+
+function circle(diam: number): string {
+    return "The circumference is " + Math.PI * diam;
+}
+
+console.log(circle(10));
+
+// as arrow
+
+const square = (height: number, width: number): string => { //explicit return
+    return "Area of the square is " + height * width;
+}
+
+console.log(square(10, 10));
+
+
+const triangle = (height: number, width: number) => { // inferred typing
+    return "Area of the triangle is " + (height*width) / 2;
+};
+
+console.log(triangle(10, 10));
+
+const add = (a: number, b: number, c?: number | string) => {
+    console.log(c);
+    return a+b;
+}
+
+console.log(add(5,4,"anything!"));
+
+const logMessage = (msg: string): void => { // void type explicit -- inferred is without return type
+    console.log('This is the message to be logged: ' + msg);
+}
+
+logMessage('Don\'t log this');
+
+// function signature
+
+let sayHello: (name: string) => void;
+
+sayHello = (name) => {
+    console.log('Hello ' + name);
+};
+
+sayHello("Dan");
+
+
+// Any type
+let age: any = "100";
+age = 5;
+age = {
+    years: 100,
+    months: 2,
+};
+console.log(age);
+
+
+// Type Aliases
+
+type StringOrNumber = string| number;
+
+type PersonObject = {
+    name: string;
+    id: StringOrNumber;
+};
+
+const person1: PersonObject = {
+    name: 'John',
+    id: "this is stringID",
+};
+
+const person2: PersonObject = {
+    name: "Dan",
+    id: 123,
+};
+
+const sayHey = (person: PersonObject) => {
+    return "Hi " + person.name;
+};
+
+const sayByebye = (person: PersonObject) => {
+    return "Bye " + person.id;
+};
+
+console.log(sayHey(person2));
+console.log(sayByebye(person1));
+
+/* 
+const link = document.querySelector('a');
+console.log(link.href); // "Object is possibly 'null." --> Can cause problems
+
+const link = document.querySelector('a')!; // ! makes this certain that we know it wont be null or undefined ** this works
+console.log(link.href);
+
+const form = document.getElementById('signup-form');
+console.log(form.method); // "Object is possibly null +++++ Property method does not exist on type HTMLElemen."
+
+const form = document.getElementById('signup-form') as HTMLFormElement; ** this works
+console.log(form.method); 
+*/
+
+
+// class formation  
+class Person {
+    readonly name: string; // this property is now immutable - it can only be read
+    private isCool: boolean; // classic encapsulation
+    protected email: string; // classic this or subclass mod
+    pets: number;
 
 
 
+    constructor(name: string, isCool: boolean, email:string, pets: number) {
+        this.name = name;
+        this.isCool = isCool;
+        this.email = email;
+        this.pets = pets;
+    }
+
+    sayHello() {
+        return `Hi, my name is ${this.name} and i have ${this.pets} pets`; 
+    }
+}
+
+const person4 = new Person('Paul', true, "1@2.com", 3);
+
+console.log(person4.sayHello());
+
+let People: Person[] = [];
+People.push(person4);
+People.push(new Person("Matt", false, "asd@das.com", 1));
+
+People.forEach(person => console.log(person.sayHello()));
+
+// class, but cleaner
+
+class Animal {
+    constructor(
+        readonly name: string,
+        protected age: number,
+        protected email: string,
+        public pets: number
+    ) {}
+
+    tellMyAttributes(): string {
+        return `Hi, i\'m ${this.name}, im ${this.age} years old, i dont have email, as i am an animal`
+    }
+}
+
+const ani1 = new Animal("port", 123, "1@3.com", 0);
+
+console.log(ani1.tellMyAttributes());
+
+class Tiger extends Animal {
+    private stripes: number;
+
+    constructor(
+        readonly name: string,
+        protected age: number,
+        protected email: string,
+        public pets: number,
+        stripes: number
+    ) {
+        super(name,age,email,pets)
+        this.stripes = stripes;
+    }
+}
+
+const tikru = new Tiger("tikru", 9, "N/A", 0, 123);
+
+console.log(tikru.tellMyAttributes());
+
+
+//interfaces in ts
+
+
+// define interface -- how object should look like
+interface Car {
+    make: string;
+    age: number;
+}
+
+function sayBroom(car: Car) {
+    console.log(`Starting ${car.make}`);
+}
+
+sayBroom({
+    make: 'BMW',
+    age: 1999,
+});
+
+
+// define using a type alias
+
+type Bike = {
+    make: string;
+    shifts: number;
+}
+function startPeadaling(bike: Bike) {
+    console.log(`Pedaling ${bike.make}`);
+}
+
+startPeadaling({
+    make: 'ALPS',
+    shifts: 2,
+});
+
+// or define anonymously
+
+function goAway(goner: {name: string; age: number}) {
+    console.log(`Going away, ${goner.name} ${goner.age}`);
+}
+
+goAway({
+    name: "Mark",
+    age: 1234,
+});
 
 
 
