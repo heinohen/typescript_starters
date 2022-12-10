@@ -402,11 +402,63 @@ bulker.broadcast(`This is test broadcast from ${bulker.name}`);
 
 
 
+//interfaces with classes (this is same from Java OOP)
+
+interface HasFormatter {
+    format(): string;
+}
+
+class Racecar implements HasFormatter {
+    constructor(
+        public name: string,
+        protected horsepower: number,
+    ) {}
+
+    format(): string {
+        return this.name.toLocaleUpperCase(); // ALL CAPS!!!!!!!11111111
+    }
+}
+
+let racecar1: HasFormatter;
+let racecar2: HasFormatter;
+
+racecar1 = new Racecar('mCdriver', 123);
+racecar2 = new Racecar('winER', 354);
+
+let cars: HasFormatter[] = [];
+
+cars.push(racecar1);
+cars.push(racecar2);
+
+cars.forEach(rc => console.log(rc.format()));
 
 
+// generix
+
+const addID = <T extends object>(obj: T) => {
+    let id = Math.floor(Math.random() * 1000);
+
+    return { ...obj, id};
+};
+
+let racecar3 =  addID( {name: "losser",horsepower: 3});
+console.log(racecar3.id);
+console.log(racecar3.name);
+
+// generalization using multiple types instead of 'any' type
+
+interface hasLength {
+    length: number;
+}
+
+function logLength<T extends hasLength>(a: T) {
+    console.log(a.length);
+    return a;
+}
 
 
-
+let hello = "Hello World";
+logLength(hello); // can be called because it knows that string has length method to be called!
 
 
 
