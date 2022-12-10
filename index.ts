@@ -1,6 +1,6 @@
 //freecodecamp's tutorial
 
-//freecodecamp.org/news/learn-typescript-beginners-guide/
+
 
 let sport = 'football';
 console.log(sport);
@@ -320,11 +320,94 @@ startPeadaling({
 function goAway(goner: {name: string; age: number}) {
     console.log(`Going away, ${goner.name} ${goner.age}`);
 }
-
 goAway({
     name: "Mark",
     age: 1234,
 });
+
+
+//extending interface
+interface Insect {
+    name: string
+};
+
+interface Bee extends Insect {
+    honey: boolean
+};
+
+const workerBee: Bee = {
+    name: "Mary",
+    honey: false,
+}
+
+console.log(`Bee's name is ${workerBee.name}`);
+
+// extending via intersection
+
+type Fish = {
+    name: string
+}
+
+type Shark = Fish & {
+    teeth: number
+}
+
+const jaws: Shark = {
+    name: "jaws",
+    teeth: 3432,
+}
+
+console.log(`This species is ${typeof(jaws)}, its name is ${jaws.name} and it has ${jaws.teeth} teeths!`);
+
+// adding new fields to existing interface 
+
+interface Bus {
+    name: string
+}
+
+interface Bus {
+    seats: number
+}
+
+const schoolBus: Bus = {
+    name: "toot toot",
+    seats: 34,
+}
+/* Not allowed on Type!
+type Flyer = {
+name: string
+}
+
+type Flyer = {
+tail: boolean
+}
+// ERROR: Duplicate identifier 'Animal'.
+*/
+
+//interfaces can also define function signatures!
+
+interface Boat {
+    name: string
+    horsepower: number
+    broadcast(sentence: string): void
+}
+
+const bulker: Boat = {
+    name: "one",
+    horsepower: 1,
+    broadcast: sentence => console.log(sentence),
+};
+
+bulker.broadcast(`This is test broadcast from ${bulker.name}`);
+
+
+
+
+
+
+
+
+
 
 
 

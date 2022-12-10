@@ -1,6 +1,5 @@
 "use strict";
 //freecodecamp's tutorial
-//freecodecamp.org/news/learn-typescript-beginners-guide/
 let sport = 'football';
 console.log(sport);
 let myName = 'Danny';
@@ -202,4 +201,26 @@ goAway({
     name: "Mark",
     age: 1234,
 });
+;
+;
+const workerBee = {
+    name: "Mary",
+    honey: false,
+};
+console.log(`Bee's name is ${workerBee.name}`);
+const jaws = {
+    name: "jaws",
+    teeth: 3432,
+};
+console.log(`This species is ${typeof (jaws)}, its name is ${jaws.name} and it has ${jaws.teeth} teeths!`);
+const schoolBus = {
+    name: "toot toot",
+    seats: 34,
+};
+const bulker = {
+    name: "one",
+    horsepower: 1,
+    broadcast: sentence => console.log(sentence),
+};
+bulker.broadcast(`This is test broadcast from ${bulker.name}`);
 //# sourceMappingURL=index.js.map
