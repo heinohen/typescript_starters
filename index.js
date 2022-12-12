@@ -1,5 +1,4 @@
 "use strict";
-//freecodecamp's tutorial
 let sport = 'football';
 console.log(sport);
 let myName = 'Danny';
@@ -260,7 +259,7 @@ Trakd3t1 O(n) runtime
 function getSecondSmallest(inputArray) {
     //if len is < 2
     if (inputArray.length < 2) {
-        return -999999; // this is to show that the call was invalid as we dont have at least 2 indexeses
+        return -999999; // this is to show that the call was invalid as we dont have at least 2 indexes
     }
     let smallest = inputArray[0];
     let nextSmallest = inputArray[1];
