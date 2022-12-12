@@ -254,4 +254,58 @@ function logLength(a) {
 }
 let hello = "Hello World";
 logLength(hello); // can be called because it knows that string has length method to be called!
+/*
+Trakd3t1 O(n) runtime
+*/
+function getSecondSmallest(inputArray) {
+    //if len is < 2
+    if (inputArray.length < 2) {
+        return -999999; // this is to show that the call was invalid as we dont have at least 2 indexeses
+    }
+    let smallest = inputArray[0];
+    let nextSmallest = inputArray[1];
+    // if len is 2
+    if (inputArray.length == 2) {
+        if (nextSmallest < smallest) {
+            let temp = smallest;
+            smallest = nextSmallest;
+            nextSmallest = temp;
+        }
+        return nextSmallest; // return nextSmallest from here
+    }
+    // if len > 2
+    // start from third index as two in the start is already checked
+    for (let i = 2; i < inputArray.length; i++) {
+        // if we have same values in both
+        if (smallest == nextSmallest && inputArray[i] > smallest) {
+            nextSmallest = inputArray[i];
+        }
+        // check if it is smaller or equal to smallest 
+        else if (inputArray[i] < smallest) {
+            let temp = smallest;
+            smallest = inputArray[i];
+            nextSmallest = temp;
+        }
+        // check if its larger than smallest and smaller than the next
+        else if (inputArray[i] > smallest && inputArray[i] < nextSmallest) {
+            nextSmallest = inputArray[i];
+        }
+    }
+    return nextSmallest;
+}
+console.log("***TESTS***");
+console.log(getSecondSmallest([1, 2, 3, 4, 5]) + " expected 2" // 2
+);
+console.log(getSecondSmallest([5, 4, 3, 2, 1]) + " expected 2" // 2
+);
+console.log(getSecondSmallest([3, 6, 5, 4, 3]) + " expected 4" // 4
+);
+console.log(getSecondSmallest([3, 3, 3, 3, 6, 3]) + " expected 6" // 6
+);
+console.log(getSecondSmallest([1]) + " expected -999999" // -999999
+);
+console.log(getSecondSmallest([3, 9]) + " expected 9" // 9
+);
+console.log(getSecondSmallest([-555, -333, -222, -111]) + " expected -333" // -333
+);
 //# sourceMappingURL=index.js.map
